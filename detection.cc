@@ -77,7 +77,7 @@ class DetectionNode : public rclcpp::Node {
             publisher->publish(result_msg);
         }
 
-        static constexpr const char* model_path = "best_models/yolo11n_0dropout.pt"; // change to path of model
+        static constexpr const char* model_path = "yolo11n_0dropout.pt"; // change to path of model
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr subscription;
         torch::jit::script::Module model;
         rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr publisher;
