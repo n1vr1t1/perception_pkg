@@ -91,7 +91,7 @@ private:
         RCLCPP_INFO(this->get_logger(), "Published %d detections.", num_detections);
     }
 
-    static constexpr const char* model_path = "best_models/yolo11n_0dropout.pt";
+    static constexpr const char* model_path = "model/yolo11n_0dropout.pt";
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr subscription;
     rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr publisher;
     torch::jit::script::Module model;
