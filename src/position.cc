@@ -23,7 +23,7 @@ namespace std {
     };
 }
 
-class CameraPoseNode : public rclcpp::Node{
+class CameraPoseNode : public rclcpp::rclcpp::Node{
     //("check if pixel coordinates match between the color image and point cloud");
     public:
         CameraPoseNode(): Node("pose_from_camera_node"){
@@ -107,14 +107,14 @@ class CameraPoseNode : public rclcpp::Node{
             publisher->publish(publish_positions);
 
         }
-        rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr subscription_cloud;
-        rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr subscription_pixel;
-        rclcpp::Publisher<vision_msgs::msg::Detection3DArray>::SharedPtr publisher;
+        rclcpp::rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr subscription_cloud;
+        rclcpp::rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr subscription_pixel;
+        rclcpp::rclcpp::Publisher<vision_msgs::msg::Detection3DArray>::SharedPtr publisher;
         sensor_msgs::msg::PointCloud2::SharedPtr current_cloud;
 };
 int main(int argc, char** argv) {
-    rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<CameraPoseNode>());
-    rclcpp::shutdown();
+    rclcpp::rclcpp::init(argc, argv);
+    rclcpp::rclcpp::spin(std::make_shared<CameraPoseNode>());
+    rclcpp::rclcpp::shutdown();
     return 0;
 }
