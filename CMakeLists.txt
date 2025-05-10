@@ -56,7 +56,7 @@ ament_target_dependencies(yolo_detection_node
 
 add_executable(pose_from_camera_node src/position.cc)
 ament_target_dependencies(pose_from_camera_node
-  rclcpp::rclcpp
+  rclcpp
   std_msgs
   sensor_msgs
   geometry_msgs
