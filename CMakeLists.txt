@@ -62,6 +62,7 @@ ament_target_dependencies(pose_from_camera_node
   geometry_msgs
   vision_msgs
   libstatistics_collector
+  )
 
 install(TARGETS
   yolo_detection_node
