@@ -97,7 +97,7 @@ class CameraPoseNode : public rclcpp::Node{
         }
         rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr subscription_cloud;
         rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr subscription_pixel;
-        rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr publisher;
+        rclcpp::Publisher<vision_msgs::msg::Detection3DArray>::SharedPtr publisher;
         sensor_msgs::msg::PointCloud2::SharedPtr current_cloud;
 };
 int main(int argc, char** argv) {
