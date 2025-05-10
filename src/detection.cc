@@ -100,6 +100,6 @@ private:
 int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
     rclcpp::spin(std::make_shared<DetectionNode>());
-    rclcpp::shutdown();
+    rclcpp::shutdown(nullptr, "Shutting down due to model load failure");
     return 0;
 }
