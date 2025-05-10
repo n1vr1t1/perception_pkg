@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(perception_pkg)
 
-# Compiler flags
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
@@ -9,7 +8,17 @@ endif()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# === ROS 2 dependencies ===
+set(LIBTORCH_URL "https://download.pytorch.org/libtorch/cpu/libtorch-shared-with-deps-2.2.0%2Bcpu.zip")
+set(LIBTORCH_DIR ${CMAKE_BINARY_DIR}/libtorch)
+set(LIBTORCH_ZIP ${CMAKE_BINARY_DIR}/libtorch.zip)
+
+if(NOT EXISTS ${LIBTORCH_DIR})
+  message(STATUS "Downloading libTorch...")
+  file(DOWNLOAD ${LIBTORCH_URL} ${LIBTORCH_ZIP} SHOW_PROGRESS)
+  execute_process(COMMAND ${CMAKE_COMMAND} -E tar xzf ${LIBTORCH_ZIP}
+                  WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+endif()
+
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
@@ -20,6 +29,7 @@ find_package(cv_bridge REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(OpenCV REQUIRED)
 
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "${LIBTORCH_DIR}")
 find_package(Torch REQUIRED)
 
 include_directories(
@@ -35,7 +45,7 @@ target_link_libraries(yolo_detection_node
   rclcpp::rclcpp
 )
 ament_target_dependencies(yolo_detection_node
-  rclcpp
+  rclcpp::rclcpp
   std_msgs
   sensor_msgs
   geometry_msgs
@@ -43,6 +53,15 @@ ament_target_dependencies(yolo_detection_node
   cv_bridge
   image_transport
 )
+
+add_executable(pose_from_camera_node src/position.cc)
+ament_target_dependencies(pose_from_camera_node
+  rclcpp::rclcpp
+  std_msgs
+  sensor_msgs
+  geometry_msgs
+  vision_msgs
+  libstatistics_collector
 
 install(TARGETS
   yolo_detection_node
