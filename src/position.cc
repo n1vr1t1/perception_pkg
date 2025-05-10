@@ -41,7 +41,7 @@ class CameraPoseNode : public rclcpp::Node{
             }
             for(size_t i =0; i+5 < positions.size(); i+=6){
                 float id = positions[i];
-                flaot confidence = positions[i+1];
+                float confidence = positions[i+1];
                 float x = positions[i+2];
                 float y = positions[i+3];
 
@@ -65,8 +65,8 @@ class CameraPoseNode : public rclcpp::Node{
                 std::advance(iter_y, index_1d);
                 std::advance(iter_z, index_1d);
 
-                float x = *iter_x;
-                float y = *iter_y;
+                x = *iter_x;
+                y = *iter_y;
                 float z = *iter_z;
 
                 if(!std::isfinite(x) || !std::isfinite(y) || !std::isfinite(z)){
