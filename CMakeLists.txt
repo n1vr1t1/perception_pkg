@@ -45,7 +45,7 @@ target_link_libraries(yolo_detection_node
   rclcpp::rclcpp
 )
 ament_target_dependencies(yolo_detection_node
-  rclcpp::rclcpp
+  rclcpp
   std_msgs
   sensor_msgs
   geometry_msgs
