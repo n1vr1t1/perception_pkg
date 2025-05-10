@@ -23,7 +23,7 @@ namespace std {
     };
 }
 
-class CameraPoseNode : public rclcpp::rclcpp::Node{
+class CameraPoseNode : public rclcpp::Node{
     //("check if pixel coordinates match between the color image and point cloud");
     public:
         CameraPoseNode(): Node("pose_from_camera_node"){
