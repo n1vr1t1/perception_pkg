@@ -70,7 +70,7 @@ class CameraPoseNode : public rclcpp::Node{
                 float z = *iter_z;
 
                 if(!std::isfinite(x) || !std::isfinite(y) || !std::isfinite(z)){
-                    RCLCPP_WARN(this->get_logger(), "Invalid point cloud data at index_1d: %d", index_1d);
+                    RCLCPP_WARN(this->get_logger(), "Invalid point cloud data at index_1d: %f", index_1d);
                     continue;
                 }
                 vision_msgs::msg::Detection3D detect;
