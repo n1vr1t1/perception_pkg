@@ -3,9 +3,11 @@
   <name>perception_pkg</name>
   <version>0.1.0</version>
   <description>ROS2 package for object detection using YOLO and 3D pose estimation</description>
-
+  <maintainer email="your_email@example.com">Your Name</maintainer>
+  <license>Apache-2.0</license>
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
   <depend>std_msgs</depend>
