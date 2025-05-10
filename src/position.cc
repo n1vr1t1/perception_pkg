@@ -10,15 +10,27 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <iterator>
+
+namespace std {
+    template <>
+    struct iterator_traits<sensor_msgs::PointCloud2ConstIterator<float>> {
+        using difference_type = std::ptrdiff_t;
+        using value_type = float;
+        using pointer = float*;
+        using reference = float&;
+        using iterator_category = std::forward_iterator_tag;  // Assuming it's a forward iterator
+    };
+}
 
 class CameraPoseNode : public rclcpp::Node{
     //("check if pixel coordinates match between the color image and point cloud");
     public:
         CameraPoseNode(): Node("pose_from_camera_node"){
             subscription_pixel = this->create_subscription<std_msgs::msg::Float32MultiArray>(
-                "/inference_result", 8, std::bind(&CameraPoseNode::image_callback, this, std::placeholders::_1));
+                "/inference_result", rclcpp::QoS(8),, std::bind(&CameraPoseNode::image_callback, this, std::placeholders::_1));
             subscription_cloud = this->create_subscription<sensor_msgs::msg::PointCloud2>(
-                "/camera/depth/points", 8, std::bind(&CameraPoseNode::cloud_callback, this, std::placeholders::_1));
+                "/camera/depth/points", rclcpp::QoS(8),, std::bind(&CameraPoseNode::cloud_callback, this, std::placeholders::_1));
             publisher = this->create_publisher<vision_msgs::msg::Detection3DArray>("/inference_3d", 8);
             current_cloud = nullptr;
         }
@@ -27,7 +39,7 @@ class CameraPoseNode : public rclcpp::Node{
         void cloud_callback(const sensor_msgs::msg::PointCloud2::SharedPtr msg){
             current_cloud = msg;
         }
-        void image_callback(const sensor_msgs::msg::Image::SharedPtr msg){
+        void image_callback(const std_msgs::msg::Float32MultiArray::SharedPtr msg){
             if(current_cloud == nullptr){
                 RCLCPP_WARN(this->get_logger(), "No point cloud data available as yet. Waiting for point cloud data :)");
                 return;
