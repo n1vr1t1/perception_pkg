@@ -11,8 +11,8 @@
 #include <string>
 #include <vector>
 
-class CameraPoseNode : public Node{
-    todo("check if pixel coordinates match between the color image and point cloud");
+class CameraPoseNode : public rclcpp::Node{
+    //("check if pixel coordinates match between the color image and point cloud");
     public:
         CameraPoseNode(): Node("pose_from_camera_node"){
             subscription_pixel = this->create_subscription<std_msgs::msg::Float32MultiArray>(
