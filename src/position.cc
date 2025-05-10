@@ -113,8 +113,8 @@ class CameraPoseNode : public rclcpp::Node{
         sensor_msgs::msg::PointCloud2::SharedPtr current_cloud;
 };
 int main(int argc, char** argv) {
-    rclcpp::rclcpp::init(argc, argv);
-    rclcpp::rclcpp::spin(std::make_shared<CameraPoseNode>());
-    rclcpp::rclcpp::shutdown();
+    rclcpp::init(argc, argv);
+    rclcpp::spin(std::make_shared<CameraPoseNode>());
+    rclcpp::shutdown();
     return 0;
 }
