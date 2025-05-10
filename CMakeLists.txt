@@ -63,7 +63,7 @@ ament_target_dependencies(pose_from_camera_node
 
 install(TARGETS
   yolo_detection_node
-  camera_pose_node
+  pose_from_camera_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
