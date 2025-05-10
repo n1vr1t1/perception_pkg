@@ -28,9 +28,9 @@ class CameraPoseNode : public rclcpp::Node{
     public:
         CameraPoseNode(): Node("pose_from_camera_node"){
             subscription_pixel = this->create_subscription<std_msgs::msg::Float32MultiArray>(
-                "/inference_result", rclcpp::QoS(8),, std::bind(&CameraPoseNode::image_callback, this, std::placeholders::_1));
+                "/inference_result", rclcpp::QoS(8), std::bind(&CameraPoseNode::image_callback, this, std::placeholders::_1));
             subscription_cloud = this->create_subscription<sensor_msgs::msg::PointCloud2>(
-                "/camera/depth/points", rclcpp::QoS(8),, std::bind(&CameraPoseNode::cloud_callback, this, std::placeholders::_1));
+                "/camera/depth/points", rclcpp::QoS(8), std::bind(&CameraPoseNode::cloud_callback, this, std::placeholders::_1));
             publisher = this->create_publisher<vision_msgs::msg::Detection3DArray>("/inference_3d", 8);
             current_cloud = nullptr;
         }
