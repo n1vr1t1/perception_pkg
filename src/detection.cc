@@ -24,7 +24,7 @@ public:
             model.eval();
         } catch (const c10::Error &e) {
             RCLCPP_ERROR(this->get_logger(), "Error loading the YOLO model: %s", e.what());
-            rclcpp::shutdown();
+            rclcpp::shutdown("done");
             return;
         }
 
@@ -100,6 +100,6 @@ private:
 int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
     rclcpp::spin(std::make_shared<DetectionNode>());
-    rclcpp::shutdown();
+    rclcpp::shutdown("done");
     return 0;
 }
