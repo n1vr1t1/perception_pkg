@@ -42,6 +42,7 @@ add_executable(yolo_detection_node src/detection.cc)
 target_link_libraries(yolo_detection_node
   ${OpenCV_LIBS}
   ${TORCH_LIBRARIES}
+  rclcpp::rclcpp
 )
 ament_target_dependencies(yolo_detection_node
   rclcpp
