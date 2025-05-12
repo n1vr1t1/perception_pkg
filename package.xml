@@ -2,21 +2,28 @@
 <package format="3">
   <name>perception_pkg</name>
   <version>0.1.0</version>
-  <description>ROS2 package for object detection using YOLO and 3D pose estimation</description>
-  <maintainer email="your_email@example.com">Your Name</maintainer>
-  <license>Apache-2.0</license>
+  <description>YOLO-based object detection using LibTorch and OpenCV</description>
+
+  <maintainer email="nivriti.raisingh@studenti.unitn.it">Nivriti Raisingh</maintainer>
+  <license>MIT</license> 
+  
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
-  <depend>rclcpp</depend>
-  <depend>sensor_msgs</depend>
-  <depend>std_msgs</depend>
-  <depend>geometry_msgs</depend>
-  <depend>vision_msgs</depend>
-  <depend>cv_bridge</depend>
-  <depend>image_transport</depend>
+  <build_depend>rclcpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>vision_msgs</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>image_transport</build_depend>
 
-  <exec_depend>libopencv-dev</exec_depend>
+  <exec_depend>rclcpp</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>vision_msgs</exec_depend>
+  <exec_depend>cv_bridge</exec_depend>
+  <exec_depend>image_transport</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
